@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -66,3 +67,10 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+=======
+# Todo_List
+
+Simple todo-list to become familiar with React. Includes features such as crossing out todos, updating todos, etc.
+
+Made using ```create-react-app```
+>>>>>>> d788d6ca75077a48b5c3198b8f5c063297cbad60
