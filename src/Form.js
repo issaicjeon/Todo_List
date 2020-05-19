@@ -4,6 +4,7 @@ import shortid from "shortid";
 export default class Form extends React.Component {
   state = {
     text: "",
+    number: 1,
   };
 
   //sets text to whatever is typed into input box
@@ -14,6 +15,7 @@ export default class Form extends React.Component {
   };
 
   handleSubmit = (event) => {
+    this.forceUpdate();
     event.preventDefault();
     //makes sure textbox isn't empty
     if (this.state.text !== "") {
@@ -21,10 +23,12 @@ export default class Form extends React.Component {
       this.props.Submitting({
         id: shortid.generate(),
         text: this.state.text,
+        number: 1,
         complete: false,
       });
       this.setState({
         text: "",
+        number: this.state.number + 1,
       });
     }
   };
@@ -36,7 +40,7 @@ export default class Form extends React.Component {
           name="text"
           value={this.state.text}
           onChange={this.handleChange}
-          placeholder="todo..."
+          placeholder="Add todo"
         ></input>
         <button type="submit">Submit</button>
       </form>

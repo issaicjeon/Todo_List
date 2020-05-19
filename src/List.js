@@ -66,6 +66,14 @@ export default class List extends React.Component {
     });
   };
 
+  resetNumbering = (todos) => {
+    let x = 1;
+    for (let i = todos.length - 1; i > -1; i--) {
+      todos[i].number = x;
+      x++;
+    }
+  };
+
   render() {
     //change todos depending on what user wants to show
     let todos = [];
@@ -81,16 +89,19 @@ export default class List extends React.Component {
       <div>
         {/* go through each todo and make it show through Todo.js */}
         <Form Submitting={this.addTodo}></Form>
-        {todos.map((todo) => (
-          <Todo
-            length={todos.length}
-            key={todo.id}
-            Deleted={() => this.Remove(todo.id)}
-            onComplete={() => this.Complete(todo.id)}
-            id={todo.id}
-            todo={todo}
-          ></Todo>
-        ))}
+        {this.resetNumbering(this.state.todos)}
+        {todos
+          .slice(0)
+          .reverse()
+          .map((todo) => (
+            <Todo
+              key={todo.id}
+              id={todo.id}
+              todo={todo}
+              Deleted={() => this.Remove(todo.id)}
+              onComplete={() => this.Complete(todo.id)}
+            ></Todo>
+          ))}
         <div className="List">
           {/* keeps track of number of todos */}
           todos left: {this.state.todos.filter((todo) => !todo.complete).length}

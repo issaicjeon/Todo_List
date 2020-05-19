@@ -9,6 +9,9 @@ function App() {
       <p>Add numbers</p>
       <p>allow editing on todolists</p>
       <p>Style with css</p>
+      <p>toggle show active/show completed etc. by clicking multiple times</p>
+      <p>Show color when buttons are on and change wording of button</p>
+      <p>Update Readme with these features</p>
       <List></List>
     </div>
   );

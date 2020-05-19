@@ -8,9 +8,9 @@ export default (props) => (
         textDecoration: props.todo.complete ? "line-through" : "",
       }}
     >
-      {props.length}. {props.todo.text}
+      {props.todo.number}. {props.todo.text}
       <button onClick={props.onComplete}>Complete</button>
+      <button onClick={props.Deleted}>Delete!</button>
     </div>
-    <button onClick={props.Deleted}>Delete!</button>
   </div>
 );
