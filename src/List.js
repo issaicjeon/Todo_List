@@ -18,6 +18,22 @@ export default class List extends React.Component {
     });
   };
 
+  //updates changed todo
+  addChangedTodo = (todo) => {
+    this.setState({
+      todos: this.state.todos.map((todoo) => {
+        if (todoo.id === todo.id) {
+          return {
+            ...todoo,
+            text: todo.text,
+          };
+        } else {
+          return todoo;
+        }
+      }),
+    });
+  };
+
   //toggles the complete state when clicked
   Complete = (id) => {
     this.setState({
@@ -37,6 +53,13 @@ export default class List extends React.Component {
   Remove = (id) => {
     this.setState({
       todos: this.state.todos.filter((todo) => todo.id !== id),
+    });
+  };
+
+  Edit = (id) => {
+    this.state.todos.map((todo) => {
+      if (todo.id === id) {
+      }
     });
   };
 
@@ -95,6 +118,8 @@ export default class List extends React.Component {
           .reverse()
           .map((todo) => (
             <Todo
+              Submitting={this.addChangedTodo}
+              todos={todos}
               key={todo.id}
               id={todo.id}
               todo={todo}
