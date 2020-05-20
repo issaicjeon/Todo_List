@@ -1,11 +1,11 @@
 import React from "react";
 import "./Todo.css";
+import Button from "./button.js";
 
 export default class Todo extends React.Component {
   state = {
     edit: false,
     text: this.props.todo.text,
-    todos: this.props.todos,
   };
 
   Edit = () => {
@@ -56,6 +56,7 @@ export default class Todo extends React.Component {
           ) : (
             <div className="Todo">
               {this.props.todo.number}. {this.props.todo.text}
+              {/* <Button Name="Complete" onClick={this.props.onComplete}></Button> */}
               <button onClick={this.props.onComplete}>Complete</button>
               <button onClick={this.props.Deleted}>Delete</button>
               <button onClick={this.Edit}>Edit</button>

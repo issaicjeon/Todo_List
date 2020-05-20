@@ -2,11 +2,14 @@ import React from "react";
 import "./List.css";
 import Form from "./Form.js";
 import Todo from "./Todo.js";
+import Button from "./button.js";
 
 export default class List extends React.Component {
   state = {
     todos: [],
     todoToShow: "all",
+    active: false,
+    completed: false,
   };
 
   //update todos whenever the form is submitted
@@ -103,13 +106,24 @@ export default class List extends React.Component {
     if (this.state.todoToShow === "all") {
       todos = this.state.todos;
     } else if (this.state.todoToShow === "active") {
-      todos = this.state.todos.filter((todo) => !todo.complete);
+      if (this.state.active === true) {
+        todos = this.state.todos.filter((todo) => !todo.complete);
+      } else {
+        todos = this.state.todos;
+      }
     } else if (this.state.todoToShow === "complete") {
-      todos = this.state.todos.filter((todo) => todo.complete);
+      if (this.state.completed === true) {
+        todos = this.state.todos.filter((todo) => todo.complete);
+      } else {
+        todos = this.state.todos;
+      }
     }
 
     return (
       <div>
+        <div>
+          <button onClick={this.clear}>clear</button>
+        </div>
         {/* go through each todo and make it show through Todo.js */}
         <Form Submitting={this.addTodo}></Form>
         {this.resetNumbering(this.state.todos)}
@@ -119,7 +133,6 @@ export default class List extends React.Component {
           .map((todo) => (
             <Todo
               Submitting={this.addChangedTodo}
-              todos={todos}
               key={todo.id}
               id={todo.id}
               todo={todo}
@@ -127,44 +140,33 @@ export default class List extends React.Component {
               onComplete={() => this.Complete(todo.id)}
             ></Todo>
           ))}
-        <div className="List">
-          {/* keeps track of number of todos */}
-          todos left: {this.state.todos.filter((todo) => !todo.complete).length}
-        </div>
+
         <div>
-          <button onClick={this.clear}>clear</button>
-        </div>
-        <div>
-          <button
-            onClick={() => {
-              this.setState({
-                todoToShow: "all",
-              });
-            }}
-          >
-            show all
-          </button>
-          <button
+          <Button
+            Name="show active todos"
             onClick={() => {
               this.setState({
                 todoToShow: "active",
+                active: !this.state.active,
               });
             }}
           >
-            show active
-          </button>
-          <button
+            show active todos
+          </Button>
+          <Button
+            Name="show completed todos"
             onClick={() => {
               this.setState({
                 todoToShow: "complete",
+                completed: !this.state.completed,
               });
             }}
           >
-            show completed
-          </button>
+            show completed todos
+          </Button>
           <div>
-            <button onClick={this.allActive}>all active</button>
-            <button onClick={this.allComplete}>all completed</button>
+            <button onClick={this.allActive}>set all active</button>
+            <button onClick={this.allComplete}>set all completed</button>
           </div>
           {/* button that deleted completed todos */}
           {this.state.todos.some((todo) => todo.complete) ? (
@@ -172,6 +174,11 @@ export default class List extends React.Component {
               <button onClick={this.deleteCompleted}>delete completed</button>
             </div>
           ) : null}
+          <div className="List" style={{ fontSize: 18 }}>
+            {/* keeps track of number of todos */}
+            todos left:{" "}
+            {this.state.todos.filter((todo) => !todo.complete).length}
+          </div>
         </div>
       </div>
     );
