@@ -1,5 +1,4 @@
 import React from "react";
-import "./List.css";
 import Form from "./Form.js";
 import Todo from "./Todo.js";
 import Button from "./Button.js";
