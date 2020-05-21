@@ -1,32 +1,18 @@
-import React from "react";
-import "./button.css";
+import styled from "styled-components";
 
-export default class Button extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      button: true,
-    };
-    this.handleClick = this.handleClick.bind(this);
+export default styled.button`
+  transition-duration: 0.4s;
+  font-size: 20px;
+  background: ${(props) => (props.primary ? "palevioletred" : "white")};
+  border-radius: 3px;
+  border: 2px solid palevioletred;
+  color: ${(props) => (props.primary ? "white" : "palevioletred")};
+  margin: 0.5em 1em;
+  padding: 0.25em 1em;
+  cursor: pointer;
+
+  &:hover {
+    background: palevioletred;
+    color: white;
   }
-  handleClick() {
-    this.setState({
-      button: !this.state.button,
-    });
-  }
-  render() {
-    return (
-      <div className="container">
-        <button
-          className={this.state.button ? "buttonTrue" : "buttonFalse"}
-          onClick={() => {
-            this.handleClick();
-            this.props.onClick();
-          }}
-        >
-          {this.props.Name}
-        </button>
-      </div>
-    );
-  }
-}
+`;

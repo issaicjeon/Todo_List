@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 55px;
+  color: #87CEFA
+}

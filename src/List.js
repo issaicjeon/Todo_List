@@ -2,7 +2,7 @@ import React from "react";
 import "./List.css";
 import Form from "./Form.js";
 import Todo from "./Todo.js";
-import Button from "./button.js";
+import Button from "./Button.js";
 
 export default class List extends React.Component {
   state = {
@@ -121,8 +121,12 @@ export default class List extends React.Component {
 
     return (
       <div>
+        <div className="List" style={{ fontSize: 18 }}>
+          {/* keeps track of number of todos */}
+          todos left: {this.state.todos.filter((todo) => !todo.complete).length}
+        </div>
         <div>
-          <button onClick={this.clear}>clear</button>
+          <Button onClick={this.clear}>clear</Button>
         </div>
         {/* go through each todo and make it show through Todo.js */}
         <Form Submitting={this.addTodo}></Form>
@@ -143,7 +147,7 @@ export default class List extends React.Component {
 
         <div>
           <Button
-            Name="show active todos"
+            primary={this.state.active}
             onClick={() => {
               this.setState({
                 todoToShow: "active",
@@ -154,7 +158,7 @@ export default class List extends React.Component {
             show active todos
           </Button>
           <Button
-            Name="show completed todos"
+            primary={this.state.completed}
             onClick={() => {
               this.setState({
                 todoToShow: "complete",
@@ -165,20 +169,15 @@ export default class List extends React.Component {
             show completed todos
           </Button>
           <div>
-            <button onClick={this.allActive}>set all active</button>
-            <button onClick={this.allComplete}>set all completed</button>
+            <Button onClick={this.allActive}>set all active</Button>
+            <Button onClick={this.allComplete}>set all completed</Button>
           </div>
           {/* button that deleted completed todos */}
           {this.state.todos.some((todo) => todo.complete) ? (
             <div>
-              <button onClick={this.deleteCompleted}>delete completed</button>
+              <Button onClick={this.deleteCompleted}>delete completed</Button>
             </div>
           ) : null}
-          <div className="List" style={{ fontSize: 18 }}>
-            {/* keeps track of number of todos */}
-            todos left:{" "}
-            {this.state.todos.filter((todo) => !todo.complete).length}
-          </div>
         </div>
       </div>
     );

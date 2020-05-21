@@ -1,5 +1,4 @@
 import React from "react";
-import "./Todo.css";
 import Button from "./button.js";
 
 export default class Todo extends React.Component {

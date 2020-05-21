@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button.js";
 import shortid from "shortid";
 
 export default class Form extends React.Component {
@@ -39,7 +40,7 @@ export default class Form extends React.Component {
           onChange={this.handleChange}
           placeholder="Add todo"
         ></input>
-        <button type="submit">Submit</button>
+        <Button type="submit">Submit</Button>
       </form>
     );
   }
