@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "./Button.js";
+import Button from "./CSS/Button.js";
 import shortid from "shortid";
 
 export default class Form extends React.Component {
