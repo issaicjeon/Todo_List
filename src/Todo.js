@@ -1,9 +1,13 @@
 import React from "react";
+import Button from "./CSS/Button.js";
+import List from "./CSS/Listing.js";
+import Button2 from "./CSS/Button2.js";
 
 export default class Todo extends React.Component {
   state = {
     edit: false,
     text: this.props.todo.text,
+    complete: false,
   };
 
   Edit = () => {
@@ -36,12 +40,7 @@ export default class Todo extends React.Component {
   render() {
     return (
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <div
-          //crosses line through todo if completed
-          style={{
-            textDecoration: this.props.todo.complete ? "line-through" : "",
-          }}
-        >
+        <div>
           {/* conditionally renders input or value if the edit button is pressed */}
           {this.state.edit ? (
             <form onSubmit={this.handleSubmit}>
@@ -52,13 +51,16 @@ export default class Todo extends React.Component {
               ></input>
             </form>
           ) : (
-            <div className="Todo">
+            <List list>
               {this.props.todo.number}. {this.props.todo.text}
-              {/* <Button Name="Complete" onClick={this.props.onComplete}></Button> */}
-              <button onClick={this.props.onComplete}>Complete</button>
+              {/* <Button2
+                primary={this.props.todo.complete}
+                circle
+                onClick={this.props.onComplete}
+              ></Button2>
               <button onClick={this.props.Deleted}>Delete</button>
-              <button onClick={this.Edit}>Edit</button>
-            </div>
+              <button onClick={this.Edit}>Edit</button> */}
+            </List>
           )}
         </div>
       </div>

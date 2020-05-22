@@ -122,14 +122,50 @@ export default class List extends React.Component {
       <div>
         <div className="List" style={{ fontSize: 18 }}>
           {/* keeps track of number of todos */}
-          todos left: {this.state.todos.filter((todo) => !todo.complete).length}
-        </div>
-        <div>
-          <Button onClick={this.clear}>clear</Button>
+          Todos left: {this.state.todos.filter((todo) => !todo.complete).length}
         </div>
         {/* go through each todo and make it show through Todo.js */}
         <Form Submitting={this.addTodo}></Form>
         {this.resetNumbering(this.state.todos)}
+
+        <div>
+          <div>
+            <Button onClick={this.clear}>Clear</Button>
+          </div>
+          <div>
+            <Button
+              primary={this.state.active}
+              onClick={() => {
+                this.setState({
+                  todoToShow: "active",
+                  active: !this.state.active,
+                });
+              }}
+            >
+              Show active todos
+            </Button>
+          </div>
+
+          <Button
+            primary={this.state.completed}
+            onClick={() => {
+              this.setState({
+                todoToShow: "complete",
+                completed: !this.state.completed,
+              });
+            }}
+          >
+            Show completed todos
+          </Button>
+          <div>
+            <Button onClick={this.allActive}>Set all active</Button>
+          </div>
+          <Button onClick={this.allComplete}>Set all completed</Button>
+          {/* button that deleted completed todos */}
+          <div>
+            <Button onClick={this.deleteCompleted}>Delete completed</Button>
+          </div>
+        </div>
         {todos
           .slice(0)
           .reverse()
@@ -143,41 +179,6 @@ export default class List extends React.Component {
               onComplete={() => this.Complete(todo.id)}
             ></Todo>
           ))}
-
-        <div>
-          <Button
-            primary={this.state.active}
-            onClick={() => {
-              this.setState({
-                todoToShow: "active",
-                active: !this.state.active,
-              });
-            }}
-          >
-            show active todos
-          </Button>
-          <Button
-            primary={this.state.completed}
-            onClick={() => {
-              this.setState({
-                todoToShow: "complete",
-                completed: !this.state.completed,
-              });
-            }}
-          >
-            show completed todos
-          </Button>
-          <div>
-            <Button onClick={this.allActive}>set all active</Button>
-            <Button onClick={this.allComplete}>set all completed</Button>
-          </div>
-          {/* button that deleted completed todos */}
-          {this.state.todos.some((todo) => todo.complete) ? (
-            <div>
-              <Button onClick={this.deleteCompleted}>delete completed</Button>
-            </div>
-          ) : null}
-        </div>
       </div>
     );
   }

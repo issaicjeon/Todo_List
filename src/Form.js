@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "./CSS/Button.js";
 import shortid from "shortid";
+import Input from "./CSS/Input.js";
 
 export default class Form extends React.Component {
   state = {
@@ -33,15 +34,21 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          name="text"
-          value={this.state.text}
-          onChange={this.handleChange}
-          placeholder="Add todo"
-        ></input>
-        <Button type="submit">Submit</Button>
-      </form>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <div style={{ textAlign: "center" }}>
+            <Input
+              name="text"
+              value={this.state.text}
+              onChange={this.handleChange}
+              placeholder="Add todo"
+            ></Input>
+          </div>
+        </form>
+        <Button submit onClick={this.handleSubmit}>
+          Submit
+        </Button>
+      </div>
     );
   }
 }
