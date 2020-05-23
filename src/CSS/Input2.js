@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
-export default styled.div`
+export default styled.input`
   position: relative;
-  top: ${(props) => (props.list ? "-240px" : "50px")};
+  top: -230px;
   text-align: center;
   font-size: 30px;
   font-family: "Karla", sans-serif;
-  color: ${(props) => props.primary};
-  padding: 10px 25px;
 `;

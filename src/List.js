@@ -142,7 +142,7 @@ export default class List extends React.Component {
                 });
               }}
             >
-              Show active todos
+              Show all active
             </Button>
           </div>
 
@@ -155,15 +155,15 @@ export default class List extends React.Component {
               });
             }}
           >
-            Show completed todos
+            Show all completed
           </Button>
           <div>
-            <Button onClick={this.allActive}>Set all active</Button>
+            <Button onClick={this.allActive}>Set all to active</Button>
           </div>
-          <Button onClick={this.allComplete}>Set all completed</Button>
+          <Button onClick={this.allComplete}>Set all to completed</Button>
           {/* button that deleted completed todos */}
           <div>
-            <Button onClick={this.deleteCompleted}>Delete completed</Button>
+            <Button onClick={this.deleteCompleted}>Delete all completed</Button>
           </div>
         </div>
         {todos
